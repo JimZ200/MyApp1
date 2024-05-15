@@ -3,19 +3,24 @@ import tw, { useDeviceContext } from 'twrnc';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import 'react-native-reanimated'; 
+import { Image } from 'react-native';
+
+const A = ()=>{ 
+  return <Text style={tw `text-blue-800 mt-18 ml-18 text-4xl`}>Component A</Text>
+}
+
+const B = ()=>{ 
+  return <Image style={[tw `mx-auto mt-2 w-46 h-46`]} source={""} />
+}
 
 function App() {
-  useDeviceContext(tw);
-
+  const value = "HI";
   return (
-    <Provider store={store}>
-      <SafeAreaView>
-        <Text style={tw`w-screen mt-16 text-center text-xl`}>
-          Your app code goes here.
-        </Text>
-      </SafeAreaView>
-    </Provider>
-  )
+   <SafeAreaView>
+     <A/>
+     <B/>
+   </SafeAreaView>
+  );
 }
 
 export default App;
