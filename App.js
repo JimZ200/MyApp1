@@ -1,27 +1,40 @@
-import { SafeAreaView, Text , Modal} from 'react-native';
+import { SafeAreaView, Text , Modal, ActivityIndicator, StyleSheet} from 'react-native';
 import tw, { useDeviceContext } from 'twrnc';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import 'react-native-reanimated'; 
-import { Image , ImageBackground} from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { View , ScrollView, Button, Pressable} from 'react-native'; 
+import { Image , ImageBackground, Alert} from 'react-native';
+import { View , ScrollView, Button, Pressable, StatusBar} from 'react-native'; 
 import {useState} from 'react';
+import Greet from './components/Greet';
 
 
 const logoImg = require("./assets/adaptive-icon.png");
 export default function App(){ 
   const [isModalVisible, setISModalVisible] = useState(false);
+  let x = false;
   return (
-    <View style={{flex: 1, backgroundColor:"plum", padding:60}}>
+    <View style={stylesheet.container}>
+      <ActivityIndicator size="large" color="lightgreen" animating={x}/>
+      <StatusBar backgroundColor={"blue"} barStyle={"light-content"}/>
       <ScrollView>
         <Button title="Press" 
         onPress={()=> setISModalVisible(true)} 
         color="midnightblue"/>
-
+        <Button title="Press2" onPress={()=> Alert.alert("Invalid option", "Try again", [
+            {
+              text: 'Cancel', 
+              onPress: ()=> console.log("Cancel Pressed"),
+            }, 
+            { 
+              text: 'Ok', 
+              onPress: ()=> console.log("Ok Pressed"),
+            }
+        ])}/>
         <Modal visible = {isModalVisible}>
           <ScrollView>
           <View style={{flex:1, padding:60, backgroundColor:"lightblue"}}>
+          <Button title="Click for alert" onPress={()=> Alert.alert("Hello")} />
             <Text>Modal Content</Text>
             
             <Pressable onPress={()=> console.log("Image Pressed")}>
@@ -56,3 +69,9 @@ export default function App(){
     </View>
   );
 }
+
+const stylesheet = StyleSheet.create({
+  container:{ flex: 1, backgroundColor:"gold", padding:60},
+  lightblueBox:{backgroundColor:"lightblue", width:100, height:100, padding:10}, 
+  lightgreenBox:{backgroundColor:"lightgreen", height:100, width:100, padding:10}
+})
