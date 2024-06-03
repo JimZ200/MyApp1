@@ -6,7 +6,6 @@ import 'react-native-reanimated';
 import { Image , ImageBackground, Alert} from 'react-native';
 import { View , ScrollView, Button, Pressable, StatusBar, TextInput} from 'react-native'; 
 import {useState} from 'react';
-import Greet from './components/Greet';
 import * as React from 'react'; 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
